@@ -8,8 +8,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -99,7 +101,6 @@ fun MainCard(modifier: Modifier = Modifier) {
 @Composable
 fun KeywordLabel(keyword: String,modifier: Modifier = Modifier){
     Box(modifier = modifier
-        .padding(horizontal = 2.dp)
         .background(color = green, shape = CircleShape)) {
         Text(text = keyword, modifier =Modifier.padding(3.dp),
             fontSize = 6.sp, fontFamily = FontFamily.Serif)
@@ -109,7 +110,9 @@ fun KeywordLabel(keyword: String,modifier: Modifier = Modifier){
 }
 @Composable
 fun KeywordsList(modifier: Modifier = Modifier, keywords: List<String>){
-    LazyRow(modifier = modifier.padding(horizontal = 6.dp , vertical = 3.dp)) {
+    LazyRow(modifier = modifier,
+        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 3.dp),
+        horizontalArrangement = Arrangement.spacedBy(2.dp),) {
         items(keywords){
             keyword -> KeywordLabel(keyword = keyword)
         }
