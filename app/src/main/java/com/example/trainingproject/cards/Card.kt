@@ -55,7 +55,7 @@ fun MainCard(modifier: Modifier = Modifier) {
     val kws: List<String> = listOf("Compose","Kotlin","Performance")
     Card(
         modifier = modifier
-            .width(200.dp),
+            .width(360.dp),
         elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
