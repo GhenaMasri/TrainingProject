@@ -16,13 +16,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.trainingproject.cards.MainCard
+import com.example.trainingproject.navigation.TopBar
 import com.example.trainingproject.navigation.myBottomNavBar
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun mainPage(modifier: Modifier = Modifier,count : Int){
-    Scaffold(modifier = modifier, bottomBar = { myBottomNavBar()}
+    Scaffold(modifier = modifier, bottomBar = { myBottomNavBar()}, topBar = {TopBar()}
     ) {paddingValues ->
         LazyColumn(modifier = Modifier
             .padding(paddingValues)
