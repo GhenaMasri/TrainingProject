@@ -3,6 +3,7 @@
 package com.example.trainingproject.cards
 
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.Image
@@ -31,6 +32,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
@@ -59,36 +61,35 @@ fun MainCard(modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Column(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp)) {
             Image(
                 painter = painterResource(R.drawable.android_logo),
                 contentDescription = "Android Logo",
                 modifier = Modifier
-                    .height(100.dp)
+                    .height(150.dp)
                     .fillMaxWidth()
             )
 
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
+                    .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = "Title",
                     modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.titleMedium.copy(fontFamily = FontFamily.Serif)
+                    style = MaterialTheme.typography.titleLarge.copy(fontFamily = FontFamily.Serif)
                 )
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_bookmark),
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(24.dp)
                 )
             }
-            Text(text = "Mar 12,2024", fontSize = 7.sp, modifier = Modifier.padding(start = 6.dp))
+            Text(text = "Mar 12,2024", fontSize = 10.sp,)
             Text(
                 text = "here would be the content and a brief description about the article",
-                fontSize = 10.sp, lineHeight = 1.em, modifier = Modifier.padding(6.dp),
+                fontSize = 14.sp, lineHeight = 1.em, modifier = Modifier.padding(vertical = 6.dp),
                 style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Serif)
             )
             KeywordsList(keywords = kws)
@@ -103,7 +104,7 @@ fun KeywordLabel(keyword: String,modifier: Modifier = Modifier){
     Box(modifier = modifier
         .background(color = green, shape = CircleShape)) {
         Text(text = keyword, modifier =Modifier.padding(3.dp),
-            fontSize = 6.sp, fontFamily = FontFamily.Serif)
+            fontSize = 10.sp, fontFamily = FontFamily.Serif)
 
     }
 
@@ -111,7 +112,7 @@ fun KeywordLabel(keyword: String,modifier: Modifier = Modifier){
 @Composable
 fun KeywordsList(modifier: Modifier = Modifier, keywords: List<String>){
     LazyRow(modifier = modifier,
-        contentPadding = PaddingValues(horizontal = 6.dp, vertical = 3.dp),
+        contentPadding = PaddingValues(vertical = 3.dp),
         horizontalArrangement = Arrangement.spacedBy(2.dp),) {
         items(keywords){
             keyword -> KeywordLabel(keyword = keyword)
@@ -129,6 +130,8 @@ fun KeywordLabelPreview(){
 @Composable
 private fun MainCardPreview() {
     TrainingProjectTheme {
-        MainCard()
+        Scaffold() { padding ->
+            MainCard(modifier = Modifier.padding(padding))
+        }
     }
 }
