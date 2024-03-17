@@ -23,7 +23,7 @@ import com.example.trainingproject.ui.theme.TrainingProjectTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun mainPage(modifier: Modifier = Modifier,count : Int){
-    Scaffold(modifier = modifier, bottomBar = { myBottomNavBar()}, topBar = {TopBar()}
+    Scaffold(modifier = modifier, bottomBar = { /*myBottomNavBar()*/}, topBar = {/*TopBar()*/}
     ) {paddingValues ->
         LazyColumn(modifier = Modifier
             .padding(paddingValues)
