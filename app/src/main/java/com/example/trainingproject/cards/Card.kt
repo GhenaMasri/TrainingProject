@@ -61,7 +61,9 @@ fun MainCard(modifier: Modifier = Modifier) {
         elevation = CardDefaults.cardElevation(10.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White)
     ) {
-        Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp)) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 10.dp)) {
             Image(
                 painter = painterResource(R.drawable.android_logo),
                 contentDescription = "Android Logo",
@@ -135,3 +137,4 @@ private fun MainCardPreview() {
         }
     }
 }
+
