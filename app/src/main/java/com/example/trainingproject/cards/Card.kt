@@ -37,9 +37,27 @@ import com.example.trainingproject.R
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 import com.example.trainingproject.ui.theme.green
 
+data class CardUiModel(
+    val title: String,
+    val date: String,
+    val description: String,
+    val keywords: List<String>
+) {
+    companion object {
+        fun preview() = CardUiModel(
+            title = "title",
+            date = "date",
+            description = "description",
+            keywords = emptyList()
+        )
+
+    }
+}
+
+
 @Composable
-fun MainCard(modifier: Modifier = Modifier) {
-    val kws: List<String> = listOf("Compose", "Kotlin", "Performance")
+fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -66,7 +84,7 @@ fun MainCard(modifier: Modifier = Modifier) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Title",
+                    text = uiModel.title,
                     modifier = Modifier.weight(1f),
                     style = MaterialTheme.typography.titleLarge.copy(fontFamily = FontFamily.Serif)
                 )
@@ -76,13 +94,13 @@ fun MainCard(modifier: Modifier = Modifier) {
                     modifier = Modifier.size(24.dp)
                 )
             }
-            Text(text = "Mar 12,2024", fontSize = 10.sp)
+            Text(text = uiModel.date, fontSize = 10.sp)
             Text(
-                text = "here would be the content and a brief description about the article",
+                text = uiModel.description,
                 fontSize = 14.sp, lineHeight = 1.em, modifier = Modifier.padding(vertical = 6.dp),
                 style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Serif)
             )
-            KeywordsList(keywords = kws)
+            KeywordsList(keywords = uiModel.keywords)
 
         }
     }
@@ -96,7 +114,7 @@ fun KeywordLabel(keyword: String, modifier: Modifier = Modifier) {
             .background(color = green, shape = CircleShape)
     ) {
         Text(
-            text = keyword, modifier = Modifier.padding(3.dp),
+            text = keyword, modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
             fontSize = 10.sp, fontFamily = FontFamily.Serif
         )
 
@@ -127,7 +145,7 @@ fun KeywordLabelPreview() {
 @Composable
 private fun MainCardPreview() {
     TrainingProjectTheme {
-        MainCard(modifier = Modifier)
+        MainCard(uiModel = CardUiModel.preview())
     }
 }
 
