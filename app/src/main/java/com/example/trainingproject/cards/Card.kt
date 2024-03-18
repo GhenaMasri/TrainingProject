@@ -50,7 +50,6 @@ data class CardUiModel(
             description = "description",
             keywords = emptyList()
         )
-
     }
 }
 
