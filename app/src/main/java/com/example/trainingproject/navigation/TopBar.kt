@@ -12,15 +12,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.trainingproject.R
-import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBar(modifier: Modifier = Modifier) {
+fun TopBar(navController: NavController, modifier: Modifier = Modifier) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
     CenterAlignedTopAppBar(
         modifier = modifier,
         navigationIcon = {
@@ -33,7 +37,7 @@ fun TopBar(modifier: Modifier = Modifier) {
 
         },
         title = {
-            Text(text = stringResource(id = R.string.android_news))
+            Text(text = getTitle(destination = currentDestination))
         },
 
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -55,10 +59,13 @@ fun TopBar(modifier: Modifier = Modifier) {
     )
 }
 
-@Preview
 @Composable
-private fun TopNarPreview() {
-    TrainingProjectTheme {
-        TopBar(modifier = Modifier)
+fun getTitle(destination : NavDestination?): String{
+    return when(destination?.route){
+        Screens.ForYou.name -> stringResource(id = R.string.android_news)
+        Screens.Saved.name -> stringResource(id = R.string.Saved)
+        Screens.Interests.name -> stringResource(id = R.string.Interests)
+        else -> stringResource(id = R.string.android_news)
     }
 }
+
