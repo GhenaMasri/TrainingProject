@@ -1,30 +1,25 @@
 package com.example.trainingproject.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.trainingproject.R
-import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
 @Composable
-fun myBottomNavBar(navController: NavController, modifier: Modifier = Modifier) {
+fun MyBottomNavBar(navController: NavController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    NavigationBar() {
+    NavigationBar(modifier = modifier) {
         NavigationBarItem(
             icon = {
                 Icon(imageVector = Icons.Default.Home, contentDescription = null)

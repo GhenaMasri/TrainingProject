@@ -12,16 +12,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.trainingproject.interests.Interests
-import com.example.trainingproject.mainpage.mainPage
-import com.example.trainingproject.savedpage.Saved
+import com.example.trainingproject.main.MainPage
+import com.example.trainingproject.saved.Saved
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
 
 @Composable
 fun MyApp(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
-    Scaffold(modifier = modifier, bottomBar = {
-        myBottomNavBar(navController) }, topBar = { TopBar(navController) }
+    Scaffold(modifier = modifier,
+        bottomBar = {
+            MyBottomNavBar(navController)
+        }, topBar = { TopBar(navController) }
     ) { paddingValues ->
         NavHost(
             navController = navController,
@@ -29,7 +31,7 @@ fun MyApp(modifier: Modifier = Modifier) {
             modifier = Modifier.padding(paddingValues)
         ) {
             composable(route = Screens.ForYou.name) {
-                mainPage(count = 5)
+                MainPage(count = 5)
             }
             composable(route = Screens.Saved.name) {
                 Saved()
@@ -43,7 +45,7 @@ fun MyApp(modifier: Modifier = Modifier) {
 
 @Preview
 @Composable
-private fun MyAppPreview(){
+private fun MyAppPreview() {
     TrainingProjectTheme {
         MyApp(modifier = Modifier)
     }

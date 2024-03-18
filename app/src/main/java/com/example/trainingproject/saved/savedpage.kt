@@ -1,4 +1,4 @@
-package com.example.trainingproject.savedpage
+package com.example.trainingproject.saved
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
