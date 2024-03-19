@@ -1,6 +1,7 @@
 package com.example.trainingproject.navigation
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -17,7 +18,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun MyBottomNavBar(navController: NavController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    NavigationBar(modifier = modifier) {
+    NavigationBar(modifier = modifier,
+        containerColor = MaterialTheme.colorScheme.background
+    ) {
         NavBarItems.values().forEach { item ->
             NavigationBarItem(
                 icon = {

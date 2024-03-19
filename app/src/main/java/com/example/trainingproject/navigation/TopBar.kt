@@ -31,7 +31,7 @@ fun TopBar(navController: NavController, modifier: Modifier = Modifier) {
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Default.Search, contentDescription = null,
-                    tint = MaterialTheme.colorScheme.tertiary
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
 
@@ -42,14 +42,14 @@ fun TopBar(navController: NavController, modifier: Modifier = Modifier) {
 
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             /* To be modified later*/
-            //containerColor = MaterialTheme.colorScheme,
-            titleContentColor = MaterialTheme.colorScheme.tertiary,
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface,
         ),
         actions = {
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Default.Settings, contentDescription = null,
-                    tint = MaterialTheme.colorScheme.tertiary
+                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
 

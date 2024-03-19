@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.trainingproject.R
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
-import com.example.trainingproject.ui.theme.green
+
 
 data class CardUiModel(
     val title: String,
@@ -98,7 +98,8 @@ fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {
             Text(text = uiModel.date, fontSize = 10.sp)
             Text(
                 text = uiModel.description,
-                fontSize = 14.sp, lineHeight = 1.em, modifier = Modifier.padding(vertical = 6.dp),
+                fontSize = 14.sp, lineHeight = 1.em,
+                modifier = Modifier.padding(vertical = 6.dp),
                 style = MaterialTheme.typography.bodySmall.copy(fontFamily = FontFamily.Serif)
             )
             KeywordsList(keywords = uiModel.keywords)
@@ -112,11 +113,14 @@ fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {
 fun KeywordLabel(keyword: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .background(color = green, shape = CircleShape)
+            .background(color = MaterialTheme.colorScheme.primary,
+        shape = CircleShape)
     ) {
         Text(
-            text = keyword, modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
-            fontSize = 10.sp, fontFamily = FontFamily.Serif
+            text = keyword,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+            fontSize = 10.sp,
+            fontFamily = FontFamily.Serif,
         )
 
     }
