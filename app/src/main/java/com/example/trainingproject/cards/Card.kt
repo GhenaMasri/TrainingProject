@@ -3,6 +3,7 @@
 package com.example.trainingproject.cards
 
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +28,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,9 +62,9 @@ fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 8.dp),
-        elevation = CardDefaults.cardElevation(10.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White)
-    ) {
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
+
+        ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -113,8 +113,10 @@ fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {
 fun KeywordLabel(keyword: String, modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .background(color = MaterialTheme.colorScheme.primary,
-        shape = CircleShape)
+            .background(
+                color = MaterialTheme.colorScheme.primary,
+                shape = CircleShape
+            )
     ) {
         Text(
             text = keyword,
@@ -146,7 +148,9 @@ fun KeywordLabelPreview() {
     KeywordLabel("Keyword", modifier = Modifier)
 }
 
-@Preview
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO
+)
 @Composable
 private fun MainCardPreview() {
     TrainingProjectTheme {
