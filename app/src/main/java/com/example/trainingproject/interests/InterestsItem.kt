@@ -22,22 +22,8 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.trainingproject.R
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
-data class InterestsItemUiModel(
-    val image: Int,
-    val topic: String,
-    val followed: Boolean,
-) {
-    companion object {
-        fun preview() = InterestsItemUiModel(
-            image = R.drawable.compose,
-            topic = "Compose",
-            followed = true
-        )
-    }
-}
 
 @Composable
 fun InterestsItem(

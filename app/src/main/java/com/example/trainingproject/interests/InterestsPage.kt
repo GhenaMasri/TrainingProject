@@ -10,23 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.lazy.items
-data class InterestsUiModel(
-    val items: List<InterestsItemUiModel>,
-) {
-    companion object {
-        fun preview() = InterestsUiModel(
-            listOf(
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-                InterestsItemUiModel.preview(),
-            )
-        )
-    }
-}
+import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
 @Composable
 fun Interests(modifier: Modifier = Modifier, uiModel: InterestsUiModel) {
@@ -45,6 +29,9 @@ fun Interests(modifier: Modifier = Modifier, uiModel: InterestsUiModel) {
 
 @Preview
 @Composable
-fun InterestsPreview() {
-    Interests(uiModel = InterestsUiModel.preview())
+private fun InterestsPreview() {
+    TrainingProjectTheme() {
+        Interests(uiModel = InterestsUiModel.preview())
+    }
 }
+

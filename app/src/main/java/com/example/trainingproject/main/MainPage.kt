@@ -14,20 +14,6 @@ import com.example.trainingproject.cards.CardUiModel
 import com.example.trainingproject.cards.MainCard
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 
-data class MainPageUiModel(
-    val cards: List<CardUiModel>,
-) {
-    companion object {
-        fun preview() = MainPageUiModel(
-            cards = listOf(
-                CardUiModel.preview(),
-                CardUiModel.preview(),
-                CardUiModel.preview(),
-                CardUiModel.preview(),
-            )
-        )
-    }
-}
 
 @Composable
 fun MainPage(modifier: Modifier = Modifier, uiModel: MainPageUiModel) {
