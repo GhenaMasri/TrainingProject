@@ -1,9 +1,10 @@
 package com.example.trainingproject.interests
 
+import androidx.annotation.DrawableRes
 import com.example.trainingproject.R
 
 data class InterestsItemUiModel(
-    val image: Int,
+    @DrawableRes val image: Int,
     val topic: String,
     val followed: Boolean,
 ) {
