@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "873349701743",
-    "project_id": "trainingproject-c43e7",
-    "storage_bucket": "trainingproject-c43e7.appspot.com"
+    "project_number": "1079000030530",
+    "project_id": "trainingproject-f1aba",
+    "storage_bucket": "trainingproject-f1aba.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:873349701743:android:3c219f255f02e6d94d6d9a",
+        "mobilesdk_app_id": "1:1079000030530:android:93256ce0ee1696d3dbbcdb",
         "android_client_info": {
           "package_name": "com.example.trainingproject"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBILfIJ1hSHYOh7xJKA7LQYGby5wCXNV0M"
+          "current_key": "AIzaSyAucuxuB9ZnfvZk3Ow0CbPU7zs196yoJHo"
         }
       ],
       "services": {
