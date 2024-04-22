@@ -46,7 +46,7 @@ fun InterestsItem(
                 modifier = Modifier.size(60.dp)
             )
         },
-        headlineText = {
+        headlineContent = {
             Text(
                 text = uiModel.topic,
                 style = MaterialTheme.typography.titleLarge
