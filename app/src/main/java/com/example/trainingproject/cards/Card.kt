@@ -1,7 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.example.trainingproject.cards
-
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -21,7 +18,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,7 +32,6 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.trainingproject.R
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
-
 
 @Composable
 fun MainCard(modifier: Modifier = Modifier, uiModel: CardUiModel) {

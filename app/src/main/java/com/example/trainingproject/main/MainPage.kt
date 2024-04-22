@@ -10,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.trainingproject.cards.CardUiModel
 import com.example.trainingproject.cards.MainCard
 import com.example.trainingproject.ui.theme.TrainingProjectTheme
 

@@ -30,7 +30,7 @@ fun Interests(modifier: Modifier = Modifier, uiModel: InterestsUiModel) {
 @Preview
 @Composable
 private fun InterestsPreview() {
-    TrainingProjectTheme() {
+    TrainingProjectTheme {
         Interests(uiModel = InterestsUiModel.preview())
     }
 }
