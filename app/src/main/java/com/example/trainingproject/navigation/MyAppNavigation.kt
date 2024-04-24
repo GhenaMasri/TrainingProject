@@ -1,5 +1,6 @@
 package com.example.trainingproject.navigation
 
+import android.app.Application
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,7 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.trainingproject.interests.Interests
-import com.example.trainingproject.interests.InterestsUiModel
+import com.example.trainingproject.interests.InterestsViewModel
 import com.example.trainingproject.main.MainPage
 import com.example.trainingproject.main.MainPageUiModel
 import com.example.trainingproject.saved.Saved
@@ -57,7 +58,7 @@ fun MyApp(modifier: Modifier = Modifier) {
                     Saved()
                 }
                 composable(route = Screens.Interests.name) {
-                    Interests(uiModel = InterestsUiModel.preview())
+                    Interests()
                 }
             }
         }
