@@ -27,7 +27,7 @@ fun InterestsItem(
     modifier: Modifier = Modifier,
     uiModel: InterestsItemUiModel,
 ) {
-    val imageLoader = rememberAsyncImagePainter(model = uiModel.image)
+    val image = rememberAsyncImagePainter(model = uiModel.image)
     ListItem(
         modifier = modifier,
         colors = ListItemDefaults.colors(
@@ -38,7 +38,7 @@ fun InterestsItem(
         ),
         leadingContent = {
             Image(
-                painter = imageLoader,
+                painter = image,
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimaryContainer),
                 modifier = Modifier.size(60.dp),

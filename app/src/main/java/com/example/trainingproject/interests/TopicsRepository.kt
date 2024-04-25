@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class TopicsRepository @Inject constructor() {
     @OptIn(ExperimentalSerializationApi::class)
-    suspend infix fun getTopics(appContext: Context): List<Topic> {
+    suspend fun getTopics(appContext: Context): List<Topic> {
         val json = Json { ignoreUnknownKeys = true }
 
         return withContext(Dispatchers.IO) {

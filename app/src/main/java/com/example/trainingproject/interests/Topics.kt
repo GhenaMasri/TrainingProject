@@ -1,7 +1,6 @@
 package com.example.trainingproject.interests
 
 import kotlinx.serialization.Serializable
-
 @Serializable
 data class Topic(
     val id: String,
