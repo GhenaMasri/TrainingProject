@@ -1,0 +1,154 @@
+[
+  {
+    "id": "1",
+    "name": "Headlines",
+    "shortDescription": "News you'll definitely be interested in",
+    "longDescription": "The latest events and announcements from the world of Android development.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Headlines.svg?alt=media&token=709fffb8-35b9-455d-b84f-5f321e69ecbe",
+    "url": ""
+  },
+  {
+    "id": "2",
+    "name": "UI",
+    "shortDescription": "not including Compose",
+    "longDescription": "Stay up to date on Material Design, Navigation, Text, Paging, Compose, Accessibility (a11y), Internationalization (i18n), Localization (l10n), Animations, Large Screens, Widgets and much more!\n\nTo get Compose specific news, make sure you also follow the Compose topic. ",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_UI.svg?alt=media&token=8edd41da-8c93-415c-bcb9-f29649c82499",
+    "url": ""
+  },
+  {
+    "id": "3",
+    "name": "Compose",
+    "shortDescription": "",
+    "longDescription": "All the latest and greatest news on Jetpack Compose - Android’s modern toolkit for building native user interfaces.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Compose.svg?alt=media&token=13135378-eaef-481d-ae9b-f6f80d01b797",
+    "url": ""
+  },
+  {
+    "id": "4",
+    "name": "Architecture",
+    "shortDescription": "",
+    "longDescription": "Stay up-to-date with Android architecture best practices including scalability and modularization. ",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Architecture.svg?alt=media&token=ed87169d-433a-4ec3-9d49-00142f37eb14",
+    "url": ""
+  },
+  {
+    "id": "5",
+    "name": "Android Studio & Tools",
+    "shortDescription": "",
+    "longDescription": "The latest news on Android development tools, including Android Studio, Gradle, device emulators, debugging tools and more.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Android-Studio.svg?alt=media&token=93b65db4-6e18-4e7c-8790-9c23caf90110",
+    "url": ""
+  },
+  {
+    "id": "6",
+    "name": "Testing",
+    "shortDescription": "",
+    "longDescription": "The latest news on testing, including unit and UI testing, and continuous integration.  ",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Testing.svg?alt=media&token=8dcfddac-683c-4c99-ab41-7d80552ece8a",
+    "url": ""
+  },
+  {
+    "id": "7",
+    "name": "Performance",
+    "shortDescription": "",
+    "longDescription": "Up-to-date content on optimizing your app performance, including profiling, tracing and jank avoidance.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Performance.svg?alt=media&token=78f5a61e-6130-43b4-bcbd-5f09eeb34132",
+    "url": ""
+  },
+  {
+    "id": "8",
+    "name": "New APIs & Libraries",
+    "shortDescription": "",
+    "longDescription": "Stay up-to-date with new APIs & library releases, including Jetpack.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_New-APIs-_-Libraries.svg?alt=media&token=5d475734-4cfd-4102-a87f-bf7a3d617679",
+    "url": ""
+  },
+  {
+    "id": "9",
+    "name": "Data Storage",
+    "shortDescription": "",
+    "longDescription": "Everything to do with data storage, including Room and DataStore.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Data-Storage.svg?alt=media&token=c46ff417-1486-4e27-8dae-2ed5e68fce1a",
+    "url": ""
+  },
+  {
+    "id": "10",
+    "name": "Kotlin",
+    "shortDescription": "",
+    "longDescription": "New language features and guidance for getting the best out of Kotlin on Android. ",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Kotlin.svg?alt=media&token=53744634-54e5-4d42-b95e-a63f0558f3d3",
+    "url": ""
+  },
+  {
+    "id": "11",
+    "name": "Privacy & Security",
+    "shortDescription": "",
+    "longDescription": "The latest news on security best practices, APIs and libraries.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Privacy-_-Security.svg?alt=media&token=2bee4aed-497a-4d56-b893-0877c06dd1f9",
+    "url": ""
+  },
+  {
+    "id": "12",
+    "name": "Publishing & Distribution",
+    "shortDescription": "",
+    "longDescription": "Everything to do with publishing and distributing your app, including Google Play.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Publishing-_-Distribution.svg?alt=media&token=1f14c6a5-a88d-4619-957f-cb122ca60084",
+    "url": ""
+  },
+  {
+    "id": "13",
+    "name": "Platform & Releases",
+    "shortDescription": "",
+    "longDescription": "Stay up-to-date with the latest Android releases and features.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Platform-_-Releases.svg?alt=media&token=39ead0ec-5c14-4209-ba35-552401835572",
+    "url": ""
+  },
+  {
+    "id": "14",
+    "name": "Accessibility",
+    "shortDescription": "",
+    "longDescription": "The latest news on accessibility features and services, helping you to improve your app's usability, particularly for users with disabilities.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Accessibility.svg?alt=media&token=ed2623a0-0760-45cf-9194-12cc5b7e1aba",
+    "url": ""
+  },
+  {
+    "id": "15",
+    "name": "Android Auto",
+    "shortDescription": "",
+    "longDescription": "The latest news on Android Automotive OS and Android Auto.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Android-Auto.svg?alt=media&token=ea37a47e-69f8-4790-919d-c2eabbac760d",
+    "url": ""
+  },
+  {
+    "id": "16",
+    "name": "Android TV",
+    "shortDescription": "",
+    "longDescription": "Stay up-to-date on everything to do with building apps for Android TV.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Android-TV.svg?alt=media&token=5874d176-eacf-40f8-8163-a72003272bc6",
+    "url": ""
+  },
+  {
+    "id": "17",
+    "name": "Games",
+    "shortDescription": "",
+    "longDescription": "The latest news on Android game development.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Games.svg?alt=media&token=b6412567-baf3-48e6-9c9e-245168c97247",
+    "url": ""
+  },
+  {
+    "id": "18",
+    "name": "Camera & Media",
+    "shortDescription": "",
+    "longDescription": "The latest news on capturing and playing media on Android, including the Camera and Media APIs. ",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Camera-_-Media.svg?alt=media&token=461be30b-5cc9-44b3-8430-6fa6c41bdc39",
+    "url": ""
+  },
+  {
+    "id": "19",
+    "name": "Wear OS",
+    "shortDescription": "",
+    "longDescription": "The latest news on app development for Wear OS.",
+    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/trainingproject-c43e7.appspot.com/o/ic_topic_Wear.svg?alt=media&token=52f60cea-9c88-4236-bda1-bf99a430003e",
+    "url": ""
+  }
+]
