@@ -23,4 +23,16 @@ class TopicsRepository @Inject constructor(
             }
         }
     }
+
+    @OptIn(ExperimentalSerializationApi::class)
+    suspend fun getTopicsMap(): Map<String, String> {
+        val json = Json { ignoreUnknownKeys = true }
+
+        return withContext(Dispatchers.IO) {
+            appContext.assets.open("topics.json").use { inputStream ->
+                json.decodeFromStream<List<Topic>>(inputStream)
+                    .associateBy({ it.id }, { it.name })
+            }
+        }
+    }
 }

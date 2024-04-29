@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.trainingproject.feature.interests.Interests
 import com.example.trainingproject.feature.interests.home.MainPage
-import com.example.trainingproject.feature.interests.home.MainPageUiModel
 import com.example.trainingproject.feature.saved.Saved
 import com.example.trainingproject.main.theme.TrainingProjectTheme
 
@@ -50,7 +49,7 @@ fun MyApp(modifier: Modifier = Modifier) {
                 modifier = Modifier.padding(paddingValues)
             ) {
                 composable(route = Screens.ForYou.name) {
-                    MainPage(uiModel = MainPageUiModel.preview())
+                    MainPage()
                 }
                 composable(route = Screens.Saved.name) {
                     Saved()
