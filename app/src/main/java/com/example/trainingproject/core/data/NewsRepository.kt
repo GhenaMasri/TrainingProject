@@ -21,10 +21,9 @@ class NewsRepository @Inject constructor(
         val topicsMap = fetchTopicsUseCase()
         return withContext(Dispatchers.IO) {
             appContext.assets.open("news.json").use { inputStream ->
-                json.decodeFromStream<List<News>>(inputStream)
-                    .map { news ->
-                        news.copy(topics = news.topics.map { topicsMap[it] ?: "" })
-                    }
+                json.decodeFromStream<List<News>>(inputStream).map { news ->
+                    news.copy(topics = news.topics.map { topicsMap[it] ?: "" })
+                }
             }
         }
     }

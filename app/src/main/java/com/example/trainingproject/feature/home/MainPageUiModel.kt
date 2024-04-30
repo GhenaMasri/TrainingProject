@@ -1,4 +1,4 @@
-package com.example.trainingproject.feature.interests.home
+package com.example.trainingproject.feature.home
 
 import com.example.trainingproject.feature.cards.CardUiModel
 

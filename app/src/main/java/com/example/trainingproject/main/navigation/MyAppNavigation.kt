@@ -15,7 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.trainingproject.feature.interests.Interests
-import com.example.trainingproject.feature.interests.home.MainPage
+import com.example.trainingproject.feature.home.MainPage
 import com.example.trainingproject.feature.saved.Saved
 import com.example.trainingproject.main.theme.TrainingProjectTheme
 

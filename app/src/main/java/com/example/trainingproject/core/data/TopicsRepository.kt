@@ -23,7 +23,6 @@ class TopicsRepository @Inject constructor(
             }
         }
     }
-
     @OptIn(ExperimentalSerializationApi::class)
     suspend fun getTopicsMap(): Map<String, String> {
         val json = Json { ignoreUnknownKeys = true }
