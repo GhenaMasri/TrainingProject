@@ -1,9 +1,11 @@
-import com.example.trainingproject.core.network.retrofit.ApiService
+package com.example.trainingproject.core.network.retrofit
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
+@Singleton
 object RetrofitInstance {
-
     private const val BASE_URL = "https://api.mockfly.dev/mocks/795ad6f6-435a-4698-9b56-2b0381dd1c8a/"
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
@@ -11,6 +13,5 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
-
     val apiService: ApiService = retrofit.create(ApiService::class.java)
 }

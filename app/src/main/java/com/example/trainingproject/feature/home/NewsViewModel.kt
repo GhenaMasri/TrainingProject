@@ -1,6 +1,6 @@
 package com.example.trainingproject.feature.home
 
-import RetrofitInstance
+import com.example.trainingproject.core.network.retrofit.RetrofitInstance
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,7 +32,6 @@ class NewsViewModel @Inject constructor(
             val uiModels = topics.map {
                 it.toUiModel()
             }
-            println("element1 "+ uiModels[0])
             _newsUiModel.emit(uiModels)
         }
     }
