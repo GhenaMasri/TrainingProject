@@ -22,8 +22,8 @@ class NewsViewModel @Inject constructor(
     val newsUiModel: StateFlow<List<CardUiModel>> get() = _newsUiModel
 
     init {
-        fetchNews()
-        //getNewsFromApi()
+        //fetchNews()
+        getNewsFromApi()
     }
 
     private fun fetchNews() {
@@ -39,14 +39,19 @@ class NewsViewModel @Inject constructor(
     private fun getNewsFromApi() {
         viewModelScope.launch {
             try {
-                val topics = apiService.getNews()
-                val uiModels = topics.map {
+                val news = apiService.getNews()
+                val topicsMap: Map<String, String> = getTopicsMap()
+                val uiModels = news.map {
                     it.toUiModel()
-                }
+                }.map { new -> new.copy(keywords = new.keywords.map { topicsMap[it] ?: "" }) }
                 _newsUiModel.emit(uiModels)
             } catch (e: Exception) {
                 Log.e("NewsViewModel", "Error fetching news", e)
             }
         }
+    }
+    private suspend fun getTopicsMap(): Map<String, String> {
+        val topics = apiService.getTopics()
+        return topics.associateBy({ it.id }, { it.name })
     }
 }
