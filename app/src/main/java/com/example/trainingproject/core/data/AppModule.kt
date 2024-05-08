@@ -1,12 +1,17 @@
 package com.example.trainingproject.core.data
 
+import android.content.Context
+import androidx.room.Room
+import com.example.trainingproject.core.database.AppDatabase
 import com.example.trainingproject.core.domain.FetchInterestsUseCase
 import com.example.trainingproject.core.domain.FetchNewsUseCase
 import com.example.trainingproject.core.domain.FetchTopicsUseCase
+import com.example.trainingproject.core.domain.InsertTopicsUseCase
 import com.example.trainingproject.core.network.retrofit.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -16,8 +21,17 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTopicsRepository(apiService: ApiService): TopicsRepository {
-        return TopicsRepository(apiService)
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "android_database"
+        ).build()
+    }
+    @Provides
+    @Singleton
+    fun provideTopicsRepository(apiService: ApiService, appDatabase: AppDatabase): TopicsRepository {
+        return TopicsRepository(apiService,appDatabase)
     }
 
     @Provides
@@ -33,13 +47,20 @@ object AppModule {
     @Provides
     fun provideNewsRepository(
         fetchTopicsUseCase: FetchTopicsUseCase,
-        apiService: ApiService
+        apiService: ApiService,
+        appDatabase: AppDatabase
     ): NewsRepository {
-        return NewsRepository(apiService,fetchTopicsUseCase)
+        return NewsRepository(apiService,fetchTopicsUseCase,appDatabase)
     }
 
     @Provides
     fun provideFetchNewsUseCase(newsRepository: NewsRepository): FetchNewsUseCase {
         return FetchNewsUseCase(newsRepository)
     }
+
+    @Provides
+    fun provideInsertTopicsUseCase(topicsRepository: TopicsRepository): InsertTopicsUseCase {
+        return InsertTopicsUseCase(topicsRepository)
+    }
+
 }

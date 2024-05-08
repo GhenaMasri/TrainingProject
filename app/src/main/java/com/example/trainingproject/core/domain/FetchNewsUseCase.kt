@@ -1,7 +1,6 @@
 package com.example.trainingproject.core.domain
 
 import com.example.trainingproject.core.data.NewsRepository
-import com.example.trainingproject.core.model.News
 import com.example.trainingproject.feature.cards.CardUiModel
 import javax.inject.Inject
 

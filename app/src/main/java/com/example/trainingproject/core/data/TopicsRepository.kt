@@ -1,16 +1,18 @@
 package com.example.trainingproject.core.data
 
 import android.util.Log
+import com.example.trainingproject.core.database.AppDatabase
+import com.example.trainingproject.core.model.asEntity
 import com.example.trainingproject.core.network.retrofit.ApiService
 import com.example.trainingproject.feature.interests.InterestsItemUiModel
 import com.example.trainingproject.feature.interests.toUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.ExperimentalSerializationApi
 import javax.inject.Inject
 
 class TopicsRepository @Inject constructor(
     private val apiService: ApiService,
+    private val appDatabase: AppDatabase
 ) {
     suspend fun getTopics(): List<InterestsItemUiModel> {
         return withContext(Dispatchers.IO) {
@@ -30,5 +32,15 @@ class TopicsRepository @Inject constructor(
     suspend fun getTopicsMap(): Map<String, String> {
         val topics = apiService.getTopics()
         return topics.associateBy({ it.id }, { it.name })
+    }
+
+    suspend fun insertTopicsToDatabase() {
+        withContext(Dispatchers.IO) {
+            val topics = apiService.getTopics()
+            val topicEntities = topics.map {
+                it.asEntity()
+            }
+            appDatabase.topicDao().upsertTopics(topicEntities)
+        }
     }
 }
