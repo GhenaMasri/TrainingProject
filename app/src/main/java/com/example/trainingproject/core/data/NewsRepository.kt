@@ -1,30 +1,32 @@
 package com.example.trainingproject.core.data
 
-import android.content.Context
+import android.util.Log
 import com.example.trainingproject.core.domain.FetchTopicsUseCase
-import com.example.trainingproject.core.model.News
-import dagger.hilt.android.qualifiers.ApplicationContext
+import com.example.trainingproject.core.network.retrofit.ApiService
+import com.example.trainingproject.feature.cards.CardUiModel
+import com.example.trainingproject.feature.cards.toUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import javax.inject.Inject
 
 class NewsRepository @Inject constructor(
-    @ApplicationContext private val appContext: Context,
+    private val apiService: ApiService,
     private val fetchTopicsUseCase: FetchTopicsUseCase
 ) {
-    @OptIn(ExperimentalSerializationApi::class)
-    suspend fun getNews(): List<News> {
-        val json = Json { ignoreUnknownKeys = true }
-        val topicsMap = fetchTopicsUseCase()
+    suspend fun getNews(): List<CardUiModel> {
         return withContext(Dispatchers.IO) {
-            appContext.assets.open("news.json").use { inputStream ->
-                json.decodeFromStream<List<News>>(inputStream).map { news ->
-                    news.copy(topics = news.topics.map { topicsMap[it] ?: "" })
-                }
+            try {
+                val news = apiService.getNews()
+                val topicsMap: Map<String, String> = fetchTopicsUseCase()
+                val uiModels = news.map {
+                    it.toUiModel()
+                }.map { new -> new.copy(keywords = new.keywords.map { topicsMap[it] ?: "" }) }
+                uiModels
+            } catch (e: Exception) {
+                Log.e("NewsRepository", "Error fetching news", e)
+                emptyList()
             }
         }
     }
 }
+

@@ -17,41 +17,17 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val fetchNewsUseCase: FetchNewsUseCase
 ) : ViewModel() {
-    private val apiService = RetrofitInstance.apiService
     private val _newsUiModel = MutableStateFlow<List<CardUiModel>>(emptyList())
     val newsUiModel: StateFlow<List<CardUiModel>> get() = _newsUiModel
 
     init {
-        //fetchNews()
-        getNewsFromApi()
+        fetchNewsFromApi()
     }
 
-    private fun fetchNews() {
+    private fun fetchNewsFromApi() {
         viewModelScope.launch {
-            val topics = fetchNewsUseCase()
-            val uiModels = topics.map {
-                it.toUiModel()
-            }
-            _newsUiModel.emit(uiModels)
+            val news = fetchNewsUseCase()
+            _newsUiModel.emit(news)
         }
-    }
-
-    private fun getNewsFromApi() {
-        viewModelScope.launch {
-            try {
-                val news = apiService.getNews()
-                val topicsMap: Map<String, String> = getTopicsMap()
-                val uiModels = news.map {
-                    it.toUiModel()
-                }.map { new -> new.copy(keywords = new.keywords.map { topicsMap[it] ?: "" }) }
-                _newsUiModel.emit(uiModels)
-            } catch (e: Exception) {
-                Log.e("NewsViewModel", "Error fetching news", e)
-            }
-        }
-    }
-    private suspend fun getTopicsMap(): Map<String, String> {
-        val topics = apiService.getTopics()
-        return topics.associateBy({ it.id }, { it.name })
     }
 }

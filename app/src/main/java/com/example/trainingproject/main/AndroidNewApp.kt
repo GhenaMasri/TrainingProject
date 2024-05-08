@@ -14,23 +14,8 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class AndroidNewApp : Application() {
-    @Inject
-    lateinit var topicsRepository: TopicsRepository
-    @Inject
-    lateinit var fetchInterestsUseCase: FetchInterestsUseCase
-    @Inject
-    lateinit var newsRepository: NewsRepository
-    @Inject
-    lateinit var fetchNewsUseCase: FetchNewsUseCase
-    @Inject
-    lateinit var fetchTopicsUseCase: FetchTopicsUseCase
     override fun onCreate() {
         super.onCreate()
-        topicsRepository = TopicsRepository(this@AndroidNewApp)
-        fetchInterestsUseCase = FetchInterestsUseCase(topicsRepository)
-        fetchTopicsUseCase = FetchTopicsUseCase(topicsRepository)
-        newsRepository = NewsRepository(appContext = this@AndroidNewApp, fetchTopicsUseCase = fetchTopicsUseCase)
-        fetchNewsUseCase = FetchNewsUseCase(newsRepository)
         setupImageLoader()
     }
 

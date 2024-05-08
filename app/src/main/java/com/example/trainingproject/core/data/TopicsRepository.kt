@@ -1,30 +1,34 @@
 package com.example.trainingproject.core.data
 
-import android.content.Context
-import com.example.trainingproject.core.model.Topic
-import dagger.hilt.android.qualifiers.ApplicationContext
+import android.util.Log
+import com.example.trainingproject.core.network.retrofit.ApiService
+import com.example.trainingproject.feature.interests.InterestsItemUiModel
+import com.example.trainingproject.feature.interests.toUiModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import javax.inject.Inject
 
 class TopicsRepository @Inject constructor(
-    @ApplicationContext private val appContext: Context,
+    private val apiService: ApiService,
 ) {
-    @OptIn(ExperimentalSerializationApi::class)
-    suspend fun getTopics(): List<Topic> {
-        val json = Json { ignoreUnknownKeys = true }
-
+    suspend fun getTopics(): List<InterestsItemUiModel> {
         return withContext(Dispatchers.IO) {
-            appContext.assets.open("topics.json").use { inputStream ->
-                json.decodeFromStream(inputStream)
+            try {
+                val topics = apiService.getTopics()
+                val uiModels = topics.map {
+                    it.toUiModel()
+                }
+                uiModels
+            } catch (e: Exception) {
+                Log.e("TopicsRepository", "Error fetching topics", e)
+                emptyList()
             }
         }
     }
 
     suspend fun getTopicsMap(): Map<String, String> {
-        return getTopics().associateBy({ it.id }, { it.name })
+        val topics = apiService.getTopics()
+        return topics.associateBy({ it.id }, { it.name })
     }
 }

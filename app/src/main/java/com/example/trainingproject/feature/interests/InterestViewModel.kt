@@ -18,36 +18,15 @@ class InterestsViewModel @Inject constructor(
 
     private val _interestsUiModel = MutableStateFlow<List<InterestsItemUiModel>>(emptyList())
     val interestsUiModel: StateFlow<List<InterestsItemUiModel>> get() = _interestsUiModel
-    private val apiService = RetrofitInstance.apiService
 
     init {
-        //fetchInterests()
         fetchInterestsFromAPI()
-    }
-
-    private fun fetchInterests() {
-        viewModelScope.launch {
-            val topics = fetchInterestsUseCase()
-            val uiModels = topics.map {
-                it.toUiModel()
-            }
-            _interestsUiModel.emit(uiModels)
-        }
     }
 
     private fun fetchInterestsFromAPI() {
         viewModelScope.launch {
-            try {
-                val topics = apiService.getTopics()
-                val uiModels = topics.map {
-                    it.toUiModel()
-                }
-                _interestsUiModel.emit(uiModels)
-
-            } catch (e: Exception) {
-                Log.e("InterestViewModel", "Error fetching topics", e)
-            }
+            val topics = fetchInterestsUseCase()
+            _interestsUiModel.emit(topics)
         }
     }
 }
-
