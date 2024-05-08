@@ -1,12 +1,9 @@
 package com.example.trainingproject.feature.home
 
-import com.example.trainingproject.core.network.retrofit.RetrofitInstance
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.trainingproject.core.domain.FetchNewsUseCase
 import com.example.trainingproject.feature.cards.CardUiModel
-import com.example.trainingproject.feature.cards.toUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

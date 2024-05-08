@@ -13,7 +13,8 @@ import com.example.trainingproject.core.database.model.TopicEntity
         NewsResourceEntity::class,
         TopicEntity::class,
     ],
-    version = 1
+    version = 2,
+    exportSchema = true,
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

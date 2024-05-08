@@ -1,10 +1,8 @@
 package com.example.trainingproject.feature.interests
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.trainingproject.core.domain.FetchInterestsUseCase
-import com.example.trainingproject.core.network.retrofit.RetrofitInstance
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

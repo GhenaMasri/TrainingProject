@@ -1,12 +1,10 @@
 package com.example.trainingproject.main
 
 import android.app.Application
-import androidx.room.Room
 import coil.Coil
 import coil.ImageLoader
 import coil.decode.SvgDecoder
-import com.example.trainingproject.core.data.TopicsRepository
-import com.example.trainingproject.core.database.AppDatabase
+import com.example.trainingproject.core.domain.InsertNewsUseCase
 import com.example.trainingproject.core.domain.InsertTopicsUseCase
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -20,10 +18,10 @@ class AndroidNewApp : Application() {
     lateinit var insertTopicsUseCase: InsertTopicsUseCase
 
     @Inject
-    lateinit var topicsRepository: TopicsRepository
+    lateinit var insertNewsUseCase: InsertNewsUseCase
     override fun onCreate() {
         super.onCreate()
-        insertToDbOnStartup()
+       insertToDbOnStartup()
         setupImageLoader()
     }
 
@@ -37,7 +35,8 @@ class AndroidNewApp : Application() {
     }
     private fun insertToDbOnStartup() {
         CoroutineScope(Dispatchers.IO).launch {
-            InsertTopicsUseCase(topicsRepository)
+            insertTopicsUseCase()
+            insertNewsUseCase()
         }
     }
 }

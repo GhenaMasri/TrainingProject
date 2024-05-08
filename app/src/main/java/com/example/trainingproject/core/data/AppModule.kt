@@ -6,6 +6,7 @@ import com.example.trainingproject.core.database.AppDatabase
 import com.example.trainingproject.core.domain.FetchInterestsUseCase
 import com.example.trainingproject.core.domain.FetchNewsUseCase
 import com.example.trainingproject.core.domain.FetchTopicsUseCase
+import com.example.trainingproject.core.domain.InsertNewsUseCase
 import com.example.trainingproject.core.domain.InsertTopicsUseCase
 import com.example.trainingproject.core.network.retrofit.ApiService
 import dagger.Module
@@ -56,6 +57,11 @@ object AppModule {
     @Provides
     fun provideFetchNewsUseCase(newsRepository: NewsRepository): FetchNewsUseCase {
         return FetchNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    fun provideInsertNewsUseCase(newsRepository: NewsRepository) : InsertNewsUseCase{
+        return InsertNewsUseCase(newsRepository)
     }
 
     @Provides
