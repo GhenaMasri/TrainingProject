@@ -7,7 +7,8 @@ data class CardUiModel(
     val date: String,
     val image : String?,
     val description: String,
-    val keywords: List<String>
+    val keywords: List<String>,
+    val saved: Boolean
 ) {
     companion object {
         fun preview() = CardUiModel(
@@ -15,7 +16,8 @@ data class CardUiModel(
             date = "date",
             image = "",
             description = "description",
-            keywords = emptyList()
+            keywords = emptyList(),
+            saved = false,
         )
     }
 }
@@ -25,5 +27,6 @@ fun News.toUiModel() = CardUiModel(
     image = headerImageUrl,
     description = content,
     date = publishDate,
-    keywords = topics
+    keywords = topics,
+    saved = false,
 )

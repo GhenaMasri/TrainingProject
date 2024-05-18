@@ -18,13 +18,18 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 fun MyBottomNavBar(navController: NavController, modifier: Modifier = Modifier) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
-    NavigationBar(modifier = modifier,
+    NavigationBar(
+        modifier = modifier,
         tonalElevation = 0.dp,
     ) {
         NavBarItems.values().forEach { item ->
             NavigationBarItem(
                 icon = {
-                    Icon(painter = painterResource(item.icon), contentDescription = null)
+                    if (currentDestination?.route == item.route) Icon(
+                        painter = painterResource(item.selectedIcon),
+                        contentDescription = null
+                    )
+                    else Icon(painter = painterResource(item.icon), contentDescription = null)
                 },
                 label = {
                     Text(text = stringResource(id = item.label))

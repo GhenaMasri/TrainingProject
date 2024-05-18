@@ -13,6 +13,10 @@ import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -28,6 +32,9 @@ fun InterestsItem(
     uiModel: InterestsItemUiModel,
 ) {
     val image = rememberAsyncImagePainter(model = uiModel.image)
+    var followed by rememberSaveable {
+        mutableStateOf(uiModel.followed)
+    }
     ListItem(
         modifier = modifier,
         colors = ListItemDefaults.colors(
@@ -47,13 +54,12 @@ fun InterestsItem(
         },
         headlineContent = {
             Text(
-                text = uiModel.topic,
-                style = MaterialTheme.typography.titleLarge
+                text = uiModel.topic, style = MaterialTheme.typography.titleLarge
             )
         },
         trailingContent = {
-            IconButton(onClick = {}) {
-                if (uiModel.followed) Icon(
+            IconButton(onClick = { followed = !followed }) {
+                if (followed) Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = null,
                     modifier = Modifier

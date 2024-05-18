@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -33,13 +34,19 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.trainingproject.R
 import com.example.trainingproject.main.theme.TrainingProjectTheme
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun MainCard(
     modifier: Modifier = Modifier,
     uiModel: CardUiModel
 ) {
-
+    var saved by rememberSaveable {
+        mutableStateOf(uiModel.saved)
+    }
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -74,11 +81,21 @@ fun MainCard(
                     modifier = Modifier.weight(1f),
                     style = MaterialTheme.typography.titleLarge.copy(fontFamily = FontFamily.Serif)
                 )
-                Icon(
-                    painter = painterResource(id = R.drawable.baseline_bookmark),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp)
-                )
+                IconButton(onClick = { saved = !saved }) {
+                    if (saved) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.filled_baseline_bookmark),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    } else {
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_bookmark),
+                            contentDescription = null,
+                            modifier = Modifier.size(24.dp)
+                        )
+                    }
+                }
             }
             Text(text = uiModel.date, fontSize = 10.sp)
             Text(
