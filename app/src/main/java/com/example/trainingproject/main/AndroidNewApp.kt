@@ -21,7 +21,7 @@ class AndroidNewApp : Application() {
     lateinit var insertNewsUseCase: InsertNewsUseCase
     override fun onCreate() {
         super.onCreate()
-       insertToDbOnStartup()
+        insertToDbOnStartup()
         setupImageLoader()
     }
 
@@ -33,6 +33,7 @@ class AndroidNewApp : Application() {
             .build()
         Coil.setImageLoader(imageLoader)
     }
+
     private fun insertToDbOnStartup() {
         CoroutineScope(Dispatchers.IO).launch {
             insertTopicsUseCase()
