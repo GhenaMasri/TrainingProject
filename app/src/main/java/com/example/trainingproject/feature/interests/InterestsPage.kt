@@ -24,8 +24,7 @@ import com.example.trainingproject.main.theme.TrainingProjectTheme
 
 @Composable
 fun Interests(
-    modifier: Modifier = Modifier,
-    viewModel: InterestsViewModel = hiltViewModel()
+    modifier: Modifier = Modifier, viewModel: InterestsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     when (uiState) {
@@ -35,8 +34,7 @@ fun Interests(
 
         is UIState.Success -> {
             LazyColumn(
-                modifier = modifier
-                    .fillMaxWidth(),
+                modifier = modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(2.dp),
                 contentPadding = PaddingValues(vertical = 4.dp)

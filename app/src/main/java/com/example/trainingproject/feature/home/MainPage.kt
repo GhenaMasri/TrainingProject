@@ -13,27 +13,45 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.trainingproject.core.result.UIState
+import com.example.trainingproject.feature.cards.CardUiModel
 import com.example.trainingproject.feature.cards.MainCard
+import com.example.trainingproject.feature.common.ErrorMessage
+import com.example.trainingproject.feature.common.ProgressIndicator
 import com.example.trainingproject.main.theme.TrainingProjectTheme
 
 
 @Composable
-fun MainPage(modifier: Modifier = Modifier,
-             viewModel : NewsViewModel = hiltViewModel()) {
-            val uiModel by viewModel.newsUiModel.collectAsStateWithLifecycle()
-
-    LazyColumn(
-        modifier = modifier
-            .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(vertical = 4.dp)
-    ) {
-        items(uiModel) { card ->
-            MainCard(uiModel = card)
+fun MainPage(
+    modifier: Modifier = Modifier,
+    viewModel: NewsViewModel = hiltViewModel()
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    when (uiState) {
+        is UIState.Error -> {
+            ErrorMessage(modifier = modifier, message = (uiState as UIState.Error).message)
         }
 
+        UIState.Loading -> {
+            ProgressIndicator(modifier = modifier)
+        }
+
+        is UIState.Success -> {
+            LazyColumn(
+                modifier = modifier
+                    .fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(vertical = 4.dp)
+            ) {
+                items((uiState as UIState.Success<List<CardUiModel>>).data) { card ->
+                    MainCard(uiModel = card)
+                }
+
+            }
+        }
     }
+
 }
 
 @Preview
