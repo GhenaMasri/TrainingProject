@@ -3,6 +3,7 @@ package com.example.trainingproject.core.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.trainingproject.core.model.Topic
 
 @Entity(
     tableName = "topics",
@@ -19,4 +20,13 @@ data class TopicEntity (
     val url: String,
     @ColumnInfo(defaultValue = "")
     val imageUrl: String,
+)
+
+fun TopicEntity.asTopic() = Topic(
+    id = id,
+    name = name,
+    shortDescription = shortDescription,
+    longDescription = longDescription,
+    url = url,
+    imageUrl = imageUrl,
 )

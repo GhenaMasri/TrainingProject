@@ -1,12 +1,13 @@
 package com.example.trainingproject.core.data
 
-import android.util.Log
 import com.example.trainingproject.core.database.AppDatabase
+import com.example.trainingproject.core.database.model.asTopic
 import com.example.trainingproject.core.model.asEntity
 import com.example.trainingproject.core.network.retrofit.ApiService
 import com.example.trainingproject.feature.interests.InterestsItemUiModel
 import com.example.trainingproject.feature.interests.toUiModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -16,16 +17,13 @@ class TopicsRepository @Inject constructor(
 ) {
     suspend fun getTopics(): List<InterestsItemUiModel> {
         return withContext(Dispatchers.IO) {
-            try {
-                val topics = apiService.getTopics()
-                val uiModels = topics.map {
-                    it.toUiModel()
-                }
-                uiModels
-            } catch (e: Exception) {
-                Log.e("TopicsRepository", "Error fetching topics", e)
-                emptyList()
+
+            val topics = apiService.getTopics()
+            val uiModels = topics.map {
+                it.toUiModel()
             }
+            uiModels
+
         }
     }
 
@@ -42,5 +40,10 @@ class TopicsRepository @Inject constructor(
             }
             appDatabase.topicDao().upsertTopics(topicEntities)
         }
+    }
+
+    suspend fun getTopicsEntities(): List<InterestsItemUiModel> {
+        val topics = appDatabase.topicDao().getTopicEntities().first()
+        return topics.map { it.asTopic().toUiModel() }
     }
 }

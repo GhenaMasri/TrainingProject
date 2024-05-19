@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.example.trainingproject.core.database.AppDatabase
 import com.example.trainingproject.core.domain.FetchInterestsUseCase
+import com.example.trainingproject.core.domain.FetchNewsFromDBUseCase
 import com.example.trainingproject.core.domain.FetchNewsUseCase
+import com.example.trainingproject.core.domain.FetchTopicsFromDBUseCase
 import com.example.trainingproject.core.domain.FetchTopicsUseCase
 import com.example.trainingproject.core.domain.InsertNewsUseCase
 import com.example.trainingproject.core.domain.InsertTopicsUseCase
@@ -29,10 +31,14 @@ object AppModule {
             "android_database"
         ).build()
     }
+
     @Provides
     @Singleton
-    fun provideTopicsRepository(apiService: ApiService, appDatabase: AppDatabase): TopicsRepository {
-        return TopicsRepository(apiService,appDatabase)
+    fun provideTopicsRepository(
+        apiService: ApiService,
+        appDatabase: AppDatabase
+    ): TopicsRepository {
+        return TopicsRepository(apiService, appDatabase)
     }
 
     @Provides
@@ -46,12 +52,17 @@ object AppModule {
     }
 
     @Provides
+    fun provideFetchTopicsFromDBUseCase(topicsRepository: TopicsRepository): FetchTopicsFromDBUseCase {
+        return FetchTopicsFromDBUseCase(topicsRepository)
+    }
+
+    @Provides
     fun provideNewsRepository(
         fetchTopicsUseCase: FetchTopicsUseCase,
         apiService: ApiService,
         appDatabase: AppDatabase
     ): NewsRepository {
-        return NewsRepository(apiService,fetchTopicsUseCase,appDatabase)
+        return NewsRepository(apiService, fetchTopicsUseCase, appDatabase)
     }
 
     @Provides
@@ -60,8 +71,13 @@ object AppModule {
     }
 
     @Provides
-    fun provideInsertNewsUseCase(newsRepository: NewsRepository) : InsertNewsUseCase{
+    fun provideInsertNewsUseCase(newsRepository: NewsRepository): InsertNewsUseCase {
         return InsertNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    fun provideFetchNewsFromDBUseCase(newsRepository: NewsRepository): FetchNewsFromDBUseCase {
+        return FetchNewsFromDBUseCase(newsRepository)
     }
 
     @Provides

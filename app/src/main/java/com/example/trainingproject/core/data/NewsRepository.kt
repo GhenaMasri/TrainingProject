@@ -1,13 +1,14 @@
 package com.example.trainingproject.core.data
 
-import android.util.Log
 import com.example.trainingproject.core.database.AppDatabase
+import com.example.trainingproject.core.database.model.asNews
 import com.example.trainingproject.core.domain.FetchTopicsUseCase
 import com.example.trainingproject.core.model.asEntity
 import com.example.trainingproject.core.network.retrofit.ApiService
 import com.example.trainingproject.feature.cards.CardUiModel
 import com.example.trainingproject.feature.cards.toUiModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -18,17 +19,12 @@ class NewsRepository @Inject constructor(
 ) {
     suspend fun getNews(): List<CardUiModel> {
         return withContext(Dispatchers.IO) {
-            try {
-                val news = apiService.getNews()
-                val topicsMap: Map<String, String> = fetchTopicsUseCase()
-                val uiModels = news.map {
-                    it.toUiModel()
-                }.map { new -> new.copy(keywords = new.keywords.map { topicsMap[it] ?: "" }) }
-                uiModels
-            } catch (e: Exception) {
-                Log.e("NewsRepository", "Error fetching news", e)
-                emptyList()
-            }
+            val news = apiService.getNews()
+            val topicsMap: Map<String, String> = fetchTopicsUseCase()
+            val uiModels = news.map {
+                it.toUiModel()
+            }.map { new -> new.copy(keywords = new.keywords.map { topicsMap[it] ?: "" }) }
+            uiModels
         }
     }
 
@@ -40,6 +36,11 @@ class NewsRepository @Inject constructor(
             }
             appDatabase.newsResourceDao().upsertNews(newsEntities)
         }
+    }
+
+    suspend fun getNewsEntities(): List<CardUiModel> {
+        val news = appDatabase.newsResourceDao().getNewsEntities().first()
+        return news.map { it.asNews().toUiModel() }
     }
 }
 

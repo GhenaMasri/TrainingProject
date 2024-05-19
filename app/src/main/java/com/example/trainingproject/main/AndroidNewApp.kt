@@ -14,14 +14,8 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class AndroidNewApp : Application() {
-    @Inject
-    lateinit var insertTopicsUseCase: InsertTopicsUseCase
-
-    @Inject
-    lateinit var insertNewsUseCase: InsertNewsUseCase
     override fun onCreate() {
         super.onCreate()
-        insertToDbOnStartup()
         setupImageLoader()
     }
 
@@ -34,10 +28,4 @@ class AndroidNewApp : Application() {
         Coil.setImageLoader(imageLoader)
     }
 
-    private fun insertToDbOnStartup() {
-        CoroutineScope(Dispatchers.IO).launch {
-            insertTopicsUseCase()
-            insertNewsUseCase()
-        }
-    }
 }
