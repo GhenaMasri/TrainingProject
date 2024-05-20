@@ -1,13 +1,16 @@
 package com.example.trainingproject.feature.home
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.trainingproject.core.data.util.NetworkUtils
 import com.example.trainingproject.core.domain.FetchNewsFromDBUseCase
 import com.example.trainingproject.core.domain.FetchNewsUseCase
 import com.example.trainingproject.core.domain.InsertNewsUseCase
 import com.example.trainingproject.core.result.UIState
 import com.example.trainingproject.feature.cards.CardUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -18,13 +21,14 @@ class NewsViewModel @Inject constructor(
     private val fetchNewsUseCase: FetchNewsUseCase,
     private val insertNewsUseCase: InsertNewsUseCase,
     private val fetchNewsFromDBUseCase: FetchNewsFromDBUseCase,
-    private val isOnline: Boolean
+    networkUtils : NetworkUtils,
+    @ApplicationContext context: Context,
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<UIState<List<CardUiModel>>>(UIState.Loading)
     val uiState: StateFlow<UIState<List<CardUiModel>>> get() = _uiState
 
     init {
-        if (isOnline) {
+        if (networkUtils.isOnline(context)) {
             fetchNewsFromApi()
         } else {
             fetchNewsFromDB()

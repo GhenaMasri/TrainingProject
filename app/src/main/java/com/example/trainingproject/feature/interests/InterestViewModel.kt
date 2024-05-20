@@ -1,12 +1,15 @@
 package com.example.trainingproject.feature.interests
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.trainingproject.core.data.util.NetworkUtils
 import com.example.trainingproject.core.domain.FetchInterestsUseCase
 import com.example.trainingproject.core.domain.FetchTopicsFromDBUseCase
 import com.example.trainingproject.core.domain.InsertTopicsUseCase
 import com.example.trainingproject.core.result.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,14 +20,15 @@ class InterestsViewModel @Inject constructor(
     private val fetchInterestsUseCase: FetchInterestsUseCase,
     private val insertTopicsUseCase: InsertTopicsUseCase,
     private val fetchTopicsFromDBUseCase: FetchTopicsFromDBUseCase,
-    private val isOnline: Boolean
+    networkUtils : NetworkUtils,
+    @ApplicationContext context: Context,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<UIState<List<InterestsItemUiModel>>>(UIState.Loading)
     val uiState: StateFlow<UIState<List<InterestsItemUiModel>>> get() = _uiState
 
     init {
-        if (isOnline) {
+        if (networkUtils.isOnline(context)) {
             fetchInterestsFromAPI()
         } else {
             fetchInterestsFromDB()

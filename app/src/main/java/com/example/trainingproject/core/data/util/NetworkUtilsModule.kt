@@ -17,7 +17,7 @@ object NetworkUtilsModule {
 
     @Singleton
     @Provides
-    fun provideIsOnline(@ApplicationContext context: Context): Boolean {
-        return NetworkUtils.isOnline(context)
+    fun provideNetworkUtils(): NetworkUtils {
+        return NetworkUtils
     }
 }
